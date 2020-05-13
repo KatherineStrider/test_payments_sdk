@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.example.testpaymentsdk"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.github.wirecard:paymentSDK-Android:2.7.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.zapp.library:merchant:1.1.0'
+    implementation 'org.iban4j:iban4j:3.2.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:customtabs:26.1.0' //only for card and PayPal payments
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation('com.squareup.retrofit2:converter-simplexml:2.3.0') {
+        exclude module: 'stax'
+        exclude module: 'stax-api'
+        exclude module: 'xpp3'
+    }
+    implementation 'io.card:android-sdk:5.5.1'
+    // iban validator
+    implementation 'org.iban4j:iban4j:3.2.1'
+    // ocr
+    implementation 'com.google.android.gms:play-services-vision:11.6.2'
+    // tracker
+    implementation 'org.piwik.sdk:piwik-sdk:2.0.0'
+    implementation "com.wirecard.ecom:card:4.2.0"
+    implementation "com.wirecard.ecom:google-pay:4.2.0"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
